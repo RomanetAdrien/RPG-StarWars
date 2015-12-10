@@ -5,6 +5,8 @@
  */
 package rpgstarwars;
 
+import java.util.Set;
+
 /**
  *
  * @author Malomek
@@ -12,6 +14,10 @@ package rpgstarwars;
 public class Character {
     
     private String name;
-    
+    private Stats stats;
+    private Set<Capacity> capacities;
+    private Set<Item> inventory;
+    private Armor armor;
+    private Weapon weapon;
     
 }

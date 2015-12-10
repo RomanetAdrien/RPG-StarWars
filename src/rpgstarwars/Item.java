@@ -9,7 +9,11 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Inventory {
+public class Item {
+    private String name;
+    private int price;
+    private int weight;
+    private int level;
     
     
 }

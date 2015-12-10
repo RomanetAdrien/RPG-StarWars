@@ -9,7 +9,9 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Inventory {
+public class Weapon extends Item{
+    private int damage;
+    private Stats mainstat;
     
     
 }

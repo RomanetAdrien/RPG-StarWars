@@ -9,7 +9,9 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Inventory {
+public class Armor extends Item{
     
+    private int defense;
+    private int requirement; //minimum strength required
     
 }

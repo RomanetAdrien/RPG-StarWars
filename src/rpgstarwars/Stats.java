@@ -10,5 +10,18 @@ package rpgstarwars;
  * @author Malomek
  */
 public class Stats {
+    //main stats
+    private int maxhp;
+    private int maxforce;
+    private int room;
     
+    //offensive stats
+    private int strength;
+    private int aim;
+    private int force;
+    
+    //defensive stats
+    private int dodge;
+    private int block;
+  
 }
