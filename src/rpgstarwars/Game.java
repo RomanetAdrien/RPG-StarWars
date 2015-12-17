@@ -5,6 +5,7 @@
  */
 package rpgstarwars;
 
+import java.util.List;
 import rpgstarwars.CharactersSettings.Character;
 import java.util.Set;
 
@@ -16,9 +17,12 @@ public class Game {
     
     private Set<Event> randomevents;
     private Set<Event> specialevents;
+    private List<Event> mainstory;
     private int difficulty;
     private Character hero;
     private Set<Character> companions;
+    
+    
     
     
 }

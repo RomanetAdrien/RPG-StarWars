@@ -14,4 +14,9 @@ import java.util.Set;
 public class ControlCapacity extends Capacity{
      
     private int length;
+
+    public ControlCapacity(String name, String type, int length) {
+        super(name, type);
+        this.length=length;
+    }
 }

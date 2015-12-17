@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
-
-import java.util.Set;
-import rpgstarwars.CharactersSettings.Monster;
+package rpgstarwars.CharacterClasses;
 
 /**
  *
  * @author Malomek
  */
-public class Combat {
-     public Set<Character> heroes;
-     public Set<Monster> villains;
-     public int turn;
-     
+public class Smuggler {
+    
 }

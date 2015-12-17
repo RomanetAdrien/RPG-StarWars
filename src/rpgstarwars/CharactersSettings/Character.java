@@ -23,5 +23,54 @@ public class Character {
     private Armor armor;
     private Weapon weapon;
     private Status status;
+
+    public Character(String name) {
+        this.name = name;
+        this.inventory = new Inventory();
+        this.inventory
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Stats getStats() {
+        return stats;
+    }
+    public void setStats(Stats stats) {
+        this.stats = stats;
+    }
+    public Set<Capacity> getCapacities() {
+        return capacities;
+    }
+    public void setCapacities(Set<Capacity> capacities) {
+        this.capacities = capacities;
+    }
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+    public Armor getArmor() {
+        return armor;
+    }
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
     
 }
