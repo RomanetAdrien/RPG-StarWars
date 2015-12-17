@@ -9,9 +9,6 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Capacity {
-    
-    private String name;
-    private String type;
+public class Event {
     
 }

@@ -5,20 +5,12 @@
  */
 package rpgstarwars;
 
-import java.util.Set;
-
 /**
  *
  * @author Malomek
  */
-public class Character {
+public class ControlCapacity extends Capacity{
     
-    private String name;
-    private Stats stats;
-    private Set<Capacity> capacities;
-    private Inventory inventory;
-    private Armor armor;
-    private Weapon weapon;
-    private Status status;
+    private int length;
     
 }

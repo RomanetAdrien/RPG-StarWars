@@ -9,9 +9,8 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Capacity {
-    
-    private String name;
-    private String type;
+public class DamageCapacity {
+    private boolean general; //1 if affect all opponents, 0 if single target
+    private int damage;
     
 }

@@ -5,20 +5,13 @@
  */
 package rpgstarwars;
 
-import java.util.Set;
-
 /**
  *
  * @author Malomek
  */
-public class Character {
+public class HealingCapacity {
     
-    private String name;
-    private Stats stats;
-    private Set<Capacity> capacities;
-    private Inventory inventory;
-    private Armor armor;
-    private Weapon weapon;
-    private Status status;
+    private boolean general; //1 if heal affect whole team,0 if single target
+    private int amount;
     
 }

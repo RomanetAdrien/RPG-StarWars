@@ -9,9 +9,8 @@ package rpgstarwars;
  *
  * @author Malomek
  */
-public class Capacity {
-    
-    private String name;
+public class Status {
     private String type;
-    
+    private int length;
+    private int remaining;
 }

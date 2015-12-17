@@ -5,11 +5,19 @@
  */
 package rpgstarwars;
 
+import java.util.Set;
+
 /**
  *
  * @author Malomek
  */
 public class Inventory {
+    private int totalweight;
+    private int healthpacks;
+    private int bananas; //bananas give back force points to the user
+    private Set<Weapon> weapons;
+    private Set<Armor> armors;
+    private Set<Grenade> grenades;
     
     
 }
