@@ -27,7 +27,7 @@ public class Character {
     public Character(String name) {
         this.name = name;
         this.inventory = new Inventory();
-        this.inventory
+        this.status= new Status();
     }
 
     public String getName() {

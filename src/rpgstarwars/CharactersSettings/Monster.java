@@ -14,5 +14,13 @@ public class Monster {
     private int maindamage;
     private Stats stats;
     private Status status;
+
+    public Monster(String name, int maindamage, Stats stats) {
+        this.name = name;
+        this.maindamage = maindamage;
+        this.stats = stats;
+        this.status= new Status();
+    }
+    
     
 }

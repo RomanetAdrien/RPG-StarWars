@@ -12,5 +12,25 @@ package rpgstarwars.CharactersSettings;
 public class DamageCapacity extends Capacity{
     private boolean general; //1 if affect all opponents, 0 if single target
     private int damage;
+
+    public DamageCapacity(String name, String type,Boolean general, int damage) {
+        super(name, type);
+        this.damage=damage;
+        this.general=general;
+    }
+
+    public boolean isGeneral() {
+        return general;
+    }
+    public void setGeneral(boolean general) {
+        this.general = general;
+    }
+    public int getDamage() {
+        return damage;
+    }
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    
     
 }

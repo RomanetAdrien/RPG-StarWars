@@ -5,6 +5,7 @@
  */
 package rpgstarwars.ItemsSettings;
 
+import java.util.HashSet;
 import java.util.Set;
 import rpgstarwars.ItemsSettings.Armor;
 import rpgstarwars.ItemsSettings.Grenade;
@@ -22,6 +23,17 @@ public class Inventory {
     private Set<Weapon> weapons;
     private Set<Armor> armors;
     private Set<Grenade> grenades;
+
+    public Inventory() {
+        this.armors = new HashSet<>();
+        this.grenades = new HashSet<>();
+        this.weapons = new HashSet<>();
+        this.totalweight=0;
+        this.healthpacks=1;
+        this.bananas=0;
+        
+    }
+    
     
     public int getTotalweight() {
         return totalweight;
@@ -41,27 +53,21 @@ public class Inventory {
     public Set<Grenade> getGrenades() {
         return grenades;
     }
-
     public void setTotalweight(int totalweight) {
         this.totalweight = totalweight;
     }
-
     public void setHealthpacks(int healthpacks) {
         this.healthpacks = healthpacks;
     }
-
     public void setBananas(int bananas) {
         this.bananas = bananas;
     }
-
     public void setWeapons(Set<Weapon> weapons) {
         this.weapons = weapons;
     }
-
     public void setArmors(Set<Armor> armors) {
         this.armors = armors;
     }
-
     public void setGrenades(Set<Grenade> grenades) {
         this.grenades = grenades;
     }
