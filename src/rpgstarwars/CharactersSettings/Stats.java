@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.CharactersSettings;
 
 /**
  *
@@ -13,6 +13,7 @@ public class Stats {
     //main stats
     private int maxhp;
     private int maxforce;
+    private int speed;
     private int room;
     
     //offensive stats

@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.CharactersSettings;
 
+import rpgstarwars.ItemsSettings.Inventory;
 import java.util.Set;
+import rpgstarwars.ItemsSettings.Armor;
+import rpgstarwars.ItemsSettings.Weapon;
 
 /**
  *

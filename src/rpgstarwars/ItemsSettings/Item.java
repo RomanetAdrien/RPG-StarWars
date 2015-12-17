@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.ItemsSettings;
 
 /**
  *
  * @author Malomek
  */
-public class ControlCapacity extends Capacity{
+public class Item {
+    private String name;
+    private int price;
+    private int weight;
+    private int level;
     
-    private int length;
     
 }

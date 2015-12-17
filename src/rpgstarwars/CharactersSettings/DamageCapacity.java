@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.CharactersSettings;
 
 /**
  *
  * @author Malomek
  */
-public class Item {
-    private String name;
-    private int price;
-    private int weight;
-    private int level;
-    
+public class DamageCapacity extends Capacity{
+    private boolean general; //1 if affect all opponents, 0 if single target
+    private int damage;
     
 }

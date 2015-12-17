@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.CharactersSettings;
 
 /**
  *
  * @author Malomek
  */
-public class HealingCapacity {
-    
-    private boolean general; //1 if heal affect whole team,0 if single target
-    private int amount;
-    
+public class Status {
+    private String type;
+    private int length;
+    private int remaining;
 }

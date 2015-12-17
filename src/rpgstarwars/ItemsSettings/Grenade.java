@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.ItemsSettings;
 
 /**
  *
  * @author Malomek
  */
-public class DamageCapacity {
-    private boolean general; //1 if affect all opponents, 0 if single target
+public class Grenade extends Item{
     private int damage;
+    private int number; //tells how much of this particular grenade the user has.
+    
     
 }

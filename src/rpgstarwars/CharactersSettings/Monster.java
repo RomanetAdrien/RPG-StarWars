@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpgstarwars;
+package rpgstarwars.CharactersSettings;
 
 /**
  *
  * @author Malomek
  */
-public class Weapon extends Item{
-    private int damage;
-    private Stats mainstat;
-    
+public class Monster {
+    private String name;
+    private int maindamage;
+    private Stats stats;
+    private Status status;
     
 }
