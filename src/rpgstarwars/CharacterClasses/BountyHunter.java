@@ -4,11 +4,20 @@
  * and open the template in the editor.
  */
 package rpgstarwars.CharacterClasses;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
  * @author Malomek
  */
-public class BountyHunter {
+public class BountyHunter extends Character{
+
+    public BountyHunter(String name) {
+        super(name, "BountyHunter");
+        //this.setStats(new Stats("BountyHunter"));
+               
+    }
+
+    
     
 }

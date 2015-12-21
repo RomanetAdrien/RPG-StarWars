@@ -21,6 +21,13 @@ public class Game {
     private int difficulty;
     private Character hero;
     private Set<Character> companions;
+
+    
+    public Game() {
+      //  mainstory= initStory();
+    }
+    
+    
     
     
     

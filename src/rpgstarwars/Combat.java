@@ -16,5 +16,27 @@ public class Combat {
      public Set<Character> heroes;
      public Set<Monster> villains;
      public int turn;
+
+    public Combat(Set<Character> heroes, Set<Monster> villains, int turn) {
+        this.heroes = heroes;
+        this.villains = villains;
+        this.turn = turn;
+    }
+     
+     
+    public boolean testMonsterlife(){
+        boolean res=false;
+        ;
+        
+    }
+     
+     
+     public static Combat noCombat() {
+         
+         Combat nocombat = new Combat(null,null,0);
+         return nocombat;
+}
      
 }
+
+

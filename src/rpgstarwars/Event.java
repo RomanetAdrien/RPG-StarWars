@@ -24,5 +24,30 @@ public class Event {
     private Combat combat;
     private int combatnumber;
     private int instance;//counter that tells us wich dialogue/combat/decision we do now
+    private String place;
+
+    public Event(int type, Set<Monster> ennemies, Set<Item> drop, int dialoguesnumber, int characterintervention, List<String> dialogue, Combat combat, int combatnumber, int instance, String place) {
+        this.type = type;
+        this.ennemies = ennemies;
+        this.drop = drop;
+        this.dialoguesnumber = dialoguesnumber;
+        this.characterintervention = characterintervention;
+        this.dialogue = dialogue;
+        this.combat = combat;
+        this.combatnumber = combatnumber;
+        this.instance = instance;
+        this.place = place;
+    }
+    
+
+    public List<Event> initStory(){
+        Event event1,event2,event3,event4,event5;
+        int storytype=0;
+        
+        
+    }
    
+    
+    
+    
 }

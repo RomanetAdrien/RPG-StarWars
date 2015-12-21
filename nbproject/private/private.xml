@@ -3,14 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Item.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Armor.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Inventory.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Capacity.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Weapon.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/ItemsSettings/Grenade.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/ControlCapacity.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/Character.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/ItemsSettings/Armor.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/WookieWarrior.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/Capacity.java</file>
             <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/RPGStarWars.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Stats.java</file>
-            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Character.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/ItemsSettings/Item.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/Status.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Event.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Game.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/DamageCapacity.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/Monster.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/Smuggler.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/ItemsSettings/Inventory.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/Combat.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/Stats.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/ItemsSettings/Weapon.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharactersSettings/HealingCapacity.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/SithLord.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/JediKnight.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/BountyHunter.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/JediMaster.java</file>
+            <file>file:/C:/Users/Malomek/Documents/GitHub/RPG-StarWars/src/rpgstarwars/CharacterClasses/Soldier.java</file>
         </group>
     </open-files>
 </project-private>

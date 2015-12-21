@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 package rpgstarwars.CharacterClasses;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
  * @author Malomek
  */
-public class JediKnight {
+public class JediKnight extends Character {
+
+    public JediKnight(String name) {
+        super(name,"JediKnight");
+    }
+    
     
 }

@@ -17,6 +17,7 @@ import rpgstarwars.ItemsSettings.Weapon;
 public class Character {
     
     private String name;
+    private int health;
     private Stats stats;
     private Set<Capacity> capacities;
     private Inventory inventory;
@@ -24,10 +25,16 @@ public class Character {
     private Weapon weapon;
     private Status status;
 
-    public Character(String name) {
+    public Character(String name, String subclass) {
         this.name = name;
         this.inventory = new Inventory();
         this.status= new Status();
+        this.stats= new Stats(subclass);
+        this.armor= new Armor(subclass);
+        this.weapon=new Weapon(subclass);
+        this.capacities= Capacity.initCapacities(subclass);
+        this.health=this.stats.getMaxhp();
+        
     }
 
     public String getName() {
@@ -35,6 +42,12 @@ public class Character {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public int getHealth() {
+        return health;
+    }
+    public void setHealth(int health) {
+        this.health = health;
     }
     public Stats getStats() {
         return stats;

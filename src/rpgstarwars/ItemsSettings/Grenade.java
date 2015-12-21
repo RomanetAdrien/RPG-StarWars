@@ -12,6 +12,10 @@ package rpgstarwars.ItemsSettings;
 public class Grenade extends Item{
     private int damage;
     private int number; //tells how much of this particular grenade the user has.
+
+    public Grenade(String name, int price, int weight, int level) {
+        super(name, price, weight, level);
+    }
     
     
 }

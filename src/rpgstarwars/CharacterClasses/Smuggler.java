@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package rpgstarwars.CharacterClasses;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
  * @author Malomek
  */
-public class Smuggler {
+public class Smuggler extends Character{
+    
+    public Smuggler(String name){
+        super(name,"Smuggler");
+    }
     
 }

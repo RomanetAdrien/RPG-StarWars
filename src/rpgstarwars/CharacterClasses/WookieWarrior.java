@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package rpgstarwars.CharacterClasses;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
  * @author Malomek
  */
-public class WookieWarrior {
+public class WookieWarrior extends Character{
+    
+    public WookieWarrior(String name){
+        super(name,"WookieWarrior");
+    }
     
 }

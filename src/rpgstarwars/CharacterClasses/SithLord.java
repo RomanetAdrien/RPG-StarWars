@@ -4,11 +4,18 @@
  * and open the template in the editor.
  */
 package rpgstarwars.CharacterClasses;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
  * @author Malomek
  */
-public class SithLord {
+public class SithLord extends Character{
+    
+    public SithLord(String name){
+     
+        super(name,"SithLord");
+    }
+    
     
 }
