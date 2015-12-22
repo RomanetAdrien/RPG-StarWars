@@ -5,6 +5,8 @@
  */
 package rpgstarwars;
 
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Set;
 import rpgstarwars.CharactersSettings.Monster;
 import rpgstarwars.CharactersSettings.Character;
@@ -37,6 +39,18 @@ public class Combat {
             current=1;
             this.nextTurn();
         }
+    }
+    
+    public void speedTest(){
+        int j=0,i=0;
+        Set fighters = new HashSet<>();
+        for(Monster monster : villains){
+            fighters.add(monster);
+        }
+        for(Character character : heroes){
+            fighters.add(character);
+        }
+        
     }
     
     public boolean testMonsterlife(){
