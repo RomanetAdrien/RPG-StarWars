@@ -36,6 +36,21 @@ public class Character {
         this.health=this.stats.getMaxhp();
         
     }
+    
+    
+    public void takeDamage(int damage){
+        int newhealth=this.health-damage;
+        if(newhealth<0){
+            this.setHealth(0);
+        }
+        else{
+            this.setHealth(newhealth);
+        }
+    }
+   
+    public boolean isAlive(){
+        return this.health>0;
+    }
 
     public String getName() {
         return name;

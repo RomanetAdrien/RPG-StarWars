@@ -7,6 +7,7 @@ package rpgstarwars;
 
 import java.util.Set;
 import rpgstarwars.CharactersSettings.Monster;
+import rpgstarwars.CharactersSettings.Character;
 
 /**
  *
@@ -16,6 +17,8 @@ public class Combat {
      public Set<Character> heroes;
      public Set<Monster> villains;
      public int turn;
+     public int protagonists; //number of fighters
+     public int current;  //current monster or hero playing
 
     public Combat(Set<Character> heroes, Set<Monster> villains, int turn) {
         this.heroes = heroes;
@@ -23,11 +26,37 @@ public class Combat {
         this.turn = turn;
     }
      
-     
+    
+    
+    public void nextTurn(){
+        this.turn+=1;
+    }
+    
+    public void nextplayer(){
+        if(current==protagonists){
+            current=1;
+            this.nextTurn();
+        }
+    }
+    
     public boolean testMonsterlife(){
-        boolean res=false;
-        ;
         
+        for(Monster monster : this.villains){
+            if(monster.isAlive()){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean testGrouplife(){
+        
+        for(Character character : this.heroes){
+            if(character.isAlive()){
+                return false;
+            }
+        }
+        return true;
     }
      
      

@@ -25,4 +25,55 @@ public class Monster {
     }
     
     
+    public void takeDamage(int damage){
+        int newhealth=this.health-damage;
+        if(newhealth<0){
+            this.setHealth(0);
+        }
+        else{
+            this.setHealth(newhealth);
+        }
+    }
+    
+    public boolean isAlive(){
+        if(this.health>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getMaindamage() {
+        return maindamage;
+    }
+    public void setMaindamage(int maindamage) {
+        this.maindamage = maindamage;
+    }
+    public Stats getStats() {
+        return stats;
+    }
+    public void setStats(Stats stats) {
+        this.stats = stats;
+    }
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    public int getHealth() {
+        return health;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    
 }

@@ -39,14 +39,13 @@ public class Event {
         this.place = place;
     }
     
-
+/*
     public List<Event> initStory(){
         Event event1,event2,event3,event4,event5;
         int storytype=0;
-        
-        
+            
     }
-   
+  */ 
     
     
     
