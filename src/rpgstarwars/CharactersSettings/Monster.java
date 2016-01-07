@@ -24,6 +24,10 @@ public class Monster {
         health=this.stats.getMaxhp();
     }
     
+    public String play(){
+        return null;
+        
+    }
     
     public void takeDamage(int damage){
         int newhealth=this.health-damage;
@@ -33,6 +37,10 @@ public class Monster {
         else{
             this.setHealth(newhealth);
         }
+    }
+    
+    public void iscontrolled(int amount){
+        this.status.statusAffected(2, amount, 0);
     }
     
     public boolean isAlive(){

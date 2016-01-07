@@ -8,6 +8,7 @@ package rpgstarwars;
 import java.util.List;
 import rpgstarwars.CharactersSettings.Character;
 import java.util.Set;
+//import java.lang.Math.random;
 
 /**
  *
@@ -29,7 +30,9 @@ public class Game {
     
     
     
-    
-    
+    public static int dice(int faces){ //roll a dice with the given a number of faces
+       int random = (int) (Math.random()*faces) + 1;
+       return random;
+    }
     
 }

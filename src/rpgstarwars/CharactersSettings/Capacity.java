@@ -32,8 +32,10 @@ public class Capacity {
     public static Set<Capacity> initCapacities(String subclass) {
         
         Set<Capacity> capacities = new HashSet<Capacity>();
+        Capacity baseattack = new Capacity("Base Attack","damage",5,0,false);
         Capacity capacity1 = null;
         Capacity capacity2 = null;
+        
         
         switch(subclass){
         
@@ -73,6 +75,7 @@ public class Capacity {
                 break;
         }
         
+        capacities.add(baseattack);
         capacities.add(capacity1);
         capacities.add(capacity2);
         

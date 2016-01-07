@@ -38,6 +38,10 @@ public class Character {
     }
     
     
+    public String play(){
+        return null;
+    }
+    
     public void takeDamage(int damage){
         int newhealth=this.health-damage;
         if(newhealth<0){
@@ -47,6 +51,17 @@ public class Character {
             this.setHealth(newhealth);
         }
     }
+    
+    public void isHealed(int amount){
+        int newhealth=this.health+amount;
+        if(newhealth>this.getStats().getMaxhp()){
+            this.setHealth(this.getStats().getMaxhp());
+        }
+        else{
+            this.setHealth(newhealth);
+        }
+    }
+    
    
     public boolean isAlive(){
         return this.health>0;

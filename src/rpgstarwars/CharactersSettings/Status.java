@@ -32,7 +32,7 @@ public class Status {
     }
     
     public boolean isAffected(){
-        if(this.type==1){
+        if(this.type!=0){
             return true;
         }
         else{
@@ -44,6 +44,13 @@ public class Status {
         this.type=0;
         this.length=0;
         this.remaining=0;
+        this.damage=0;
+    }
+    
+    public void statusAffected(int type, int length,int damage){
+        this.type=type;
+        this.length=length;
+        this.remaining=remaining;
         this.damage=0;
     }
     
@@ -94,8 +101,5 @@ public class Status {
         this.damage = damage;
     }
     
-    
-    
-    
-    
+
 }
