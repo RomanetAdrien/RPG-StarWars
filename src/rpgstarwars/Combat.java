@@ -5,12 +5,19 @@
  */
 package rpgstarwars;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import rpgstarwars.CharactersSettings.Monster;
 import rpgstarwars.CharactersSettings.Character;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 /**
  *
@@ -73,13 +80,14 @@ public class Combat {
     }
     
     public String chooseTarget(String playerchoice){
+        System.out.println("bibi");
         String[] data = playerchoice.split("&&");
         String result = "";
         String target = data[0];
         if (target=="monsterplay"){
             return this.monsterplay();
         }
-        if(target=="*"){
+        if(target=="*" || Boolean.parseBoolean(data[3])){
             result+=this.findanyMonster().getName();
             return result + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
         }
@@ -233,13 +241,39 @@ public class Combat {
     
     public void combatRun(){
         while(this.testGrouplife()&&this.testMonsterlife()){
-            action(this.nextPlay());
+            action(this.chooseTarget(nextPlay()));
             this.removeDead();
+            combatSummary();
             if(this.endTurn()){
                 nextTurn();
             }
-         
         }
+        if(this.testGrouplife()){
+            combatVictory();
+        }
+    }
+    
+    public void combatVictory(){
+        
+       /* FileInputStream blah = null;
+         try {
+             blah = new FileInputStream("./victoryfanfare.mp3");
+         } catch (FileNotFoundException ex) {
+             Logger.getLogger(Combat.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        AudioStream as = null;
+         try {
+             as = new AudioStream(blah);
+         } catch (IOException ex) {
+             Logger.getLogger(Combat.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        AudioPlayer.player.start(as);
+        
+        String Text ="VICTORY FOR THE HEROES !";
+        JOptionPane.showMessageDialog(null, Text);
+        
+        AudioPlayer.player.stop(as);
+        */
         
     }
     
@@ -303,16 +337,34 @@ public class Combat {
     }
     
     public void removeDead(){
+        Monster mprevious = null;
+        Character cprevious =null;
         for(Monster monster : this.villains){
+            if(mprevious!=null){
+                villains.remove(mprevious);
+                mprevious=null;
+            }
             if(!monster.isAlive()){
-                villains.remove(monster);
+                mprevious=monster;
             }
         }
         for(Character character : this.heroes){
+            if(cprevious!=null){
+                heroes.remove(cprevious);
+                cprevious=null;
+            }
             if(!character.isAlive()){
-                heroes.remove(character);
+                cprevious=character;
             }
         }
+        if(mprevious!=null){
+                villains.remove(mprevious);
+                mprevious=null;
+            }
+        if(cprevious!=null){
+                heroes.remove(cprevious);
+                cprevious=null;
+            }
     }
     
     public Monster findanyMonster(){
@@ -329,6 +381,21 @@ public class Combat {
          return nocombat;
         }
      
+     public void combatSummary(){
+         String Text = "";
+         Text+="Combat summary\n\n Heroes :\n";
+         for(Character character : this.heroes){
+            Text+=character.getName()+" : "+Integer.toString(character.getHealth())+" HP";
+            Text+="  "+Integer.toString(character.getStats().getForce())+" FP\n";
+        }
+         Text+="\n Villains :\n";
+         for(Monster monster : this.villains){
+            Text+=monster.getName()+" : "+Integer.toString(monster.getHealth())+" HP";
+            Text+="\n";
+        }
+         
+         JOptionPane.showMessageDialog(null, Text);   
+     }
 }
 
 
