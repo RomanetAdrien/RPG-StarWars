@@ -24,6 +24,18 @@ public class Stats {
     //defensive stats
     private int dodge;
     private int block;
+    
+    public Stats(){
+                maxhp=0;
+                maxforce=0;
+                speed=0;
+                room=0;
+                strength=0;
+                aim=0;
+                force=0;
+                dodge=0;
+                block=0;
+    }
 
     public Stats(String subclass) {
         
@@ -118,7 +130,29 @@ public class Stats {
         
     }
 
-    
+    public static Stats monsterStats(String monster){
+        
+        Stats newstats = new Stats();
+        
+        switch(monster){
+            
+            case "CleaningDroid" :
+                newstats.maxhp=5;
+                newstats.maxforce=1;
+                newstats.speed=2;
+                newstats.room=0;
+                newstats.strength=5;
+                newstats.aim=2;
+                newstats.force=3;
+                newstats.dodge=3;
+                newstats.block=3;
+                break;
+                
+                
+        }
+      return newstats;  
+    }
+
     
     public int getMaxhp() {
         return maxhp;

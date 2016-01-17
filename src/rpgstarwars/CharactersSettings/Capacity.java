@@ -81,6 +81,15 @@ public class Capacity {
         
         return capacities;
     }
+    
+    public String getData() { //returns the necessary infos for a chosen capacity;
+        
+        String result ="";
+        result+=this.getType() +"&&";
+        result+=Integer.toString(this.getAmount())+"&&";
+        result+=String.valueOf(this.area);
+        return result;
+    }
 
     public String getName() {
         return name;

@@ -22,11 +22,12 @@ public class Inventory {
     private int bananas; //bananas give back force points to the user
     private Set<Weapon> weapons;
     private Set<Armor> armors;
-    private Set<Grenade> grenades;
+    private Grenade grenades;
 
     public Inventory() {
         this.armors = new HashSet<>();
-        this.grenades = new HashSet<>();
+        //this.grenades = new HashSet<>();
+        this.grenades=Grenade.thermalDetonator();
         this.weapons = new HashSet<>();
         this.totalweight=0;
         this.healthpacks=1;
@@ -50,7 +51,7 @@ public class Inventory {
     public Set<Armor> getArmors() {
         return armors;
     }
-    public Set<Grenade> getGrenades() {
+    public Grenade getGrenades() {
         return grenades;
     }
     public void setTotalweight(int totalweight) {
@@ -68,7 +69,7 @@ public class Inventory {
     public void setArmors(Set<Armor> armors) {
         this.armors = armors;
     }
-    public void setGrenades(Set<Grenade> grenades) {
+    public void setGrenades(Grenade grenades) {
         this.grenades = grenades;
     }
     

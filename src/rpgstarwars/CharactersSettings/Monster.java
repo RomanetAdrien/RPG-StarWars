@@ -24,8 +24,13 @@ public class Monster {
         health=this.stats.getMaxhp();
     }
     
+        public static Monster cleaningDroid(){
+        Monster newmonster = new Monster("CleaningDroid",1,Stats.monsterStats("CleaningDroid"));
+        return newmonster;
+    }
+    
     public String play(){
-        return null;
+        return "monsterplay&&monsterplay&&monsterplay";
         
     }
     
@@ -51,6 +56,13 @@ public class Monster {
             return false;
         }
     }
+    
+    public static Monster emptyMonster(){
+        Monster monster = null;
+        return monster;
+    }
+    
+
 
     public String getName() {
         return name;

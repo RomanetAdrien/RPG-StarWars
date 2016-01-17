@@ -8,6 +8,7 @@ package rpgstarwars;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import rpgstarwars.CharactersSettings.Monster;
 import rpgstarwars.CharactersSettings.Character;
 
@@ -26,51 +27,91 @@ public class Combat {
      public Set<Monster> monsterready;
      public Set<Monster> monsterdone;
 
-    public Combat(Set<Character> heroes, Set<Monster> villains, int turn) {
+    public Combat(Set<Character> heroes, Set<Monster> villains) {
         this.heroes = heroes;
         this.villains = villains;
-        this.turn = turn;
+        this.turn = 0;
         this.characterready=heroes;
         this.monsterready=villains;
         this.characterdone= new HashSet<>();
         this.monsterdone= new HashSet<>();
     }
     
+    
     public String nextPlay(){
         Character nextcharacter = this.findNextcharacter();
         Monster nextmonster = this.findNextmonster();
         if(nextcharacter==null){
+            this.monsterhasPlayed(nextmonster);
             return nextmonster.play();
         }
         if(nextmonster==null){
+            this.characterhasPlayed(nextcharacter);
             return nextcharacter.play();
         }
         
         if(nextcharacter.getStats().getSpeed()>nextmonster.getStats().getSpeed()){
+            this.characterhasPlayed(nextcharacter);
             return nextcharacter.play();
         }
         else{
             if(nextcharacter.getStats().getSpeed()<nextmonster.getStats().getSpeed()){
+                this.monsterhasPlayed(nextmonster);
                 return nextmonster.play();
             }
             else{
                 if(Game.dice(2)==1){
+                    this.characterhasPlayed(nextcharacter);
                     return nextcharacter.play();
                 }
                 else{
+                    this.monsterhasPlayed(nextmonster);
                     return nextmonster.play();
                 }
             }
         }
     }
     
-    public void action(String action){
+    public String chooseTarget(String playerchoice){
+        String[] data = playerchoice.split("&&");
+        String result = "";
+        String target = data[0];
+        if (target=="monsterplay"){
+            return this.monsterplay();
+        }
+        if(target=="*"){
+            result+=this.findanyMonster().getName();
+            return result + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
+        }
+        else{
+            String Text="Time to pick a target !\n\n";
+            int i = 0,choice=0;
+            String[] monsternames = new String[villains.size()];
+            
+            for(Monster monster : villains){
+            Text+=Integer.toString(i+1) + ": " + monster.getName();
+            monsternames[i]=monster.getName();
+            i++;
+            }
+            
+            do
+        {
+            String playerinput = JOptionPane.showInputDialog(Text);
+            choice = Integer.parseInt(playerinput);
+        }while(choice<1 && choice>villains.size());
+            String playerinput=monsternames[choice-1];
+            return playerinput + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
+        }
         
-        String[] donnees = action.split("&&");
-        String target = donnees[0];
-        String effect = donnees[1];
-        int amount = Integer.parseInt(donnees[2]);
-        Boolean area = Boolean.valueOf(donnees[3]);
+    }
+    
+    public void action(String action){ //action comes under the forme "target&&effect&&amount&&area" or null if monster played
+        if(action==null){return;}
+        String[] data = action.split("&&"); 
+        String target = data[0];
+        String effect = data[1];
+        int amount = Integer.parseInt(data[2]);
+        Boolean area = Boolean.valueOf(data[3]);
         if(!"heal".equals(effect)){
         for(Monster monster : villains){
             
@@ -94,6 +135,13 @@ public class Combat {
                 }
             }
         }   
+    }
+    
+    public String monsterplay(){
+        for(Character character : heroes){
+            character.takeDamage(5);
+        }
+        return null;
     }
     
     public void healally(Character target, int amount, Boolean area){
@@ -173,10 +221,48 @@ public class Combat {
     return nextmonster;
     }
    
+    public void monsterhasPlayed(Monster monster){
+        this.monsterdone.add(monster);
+        this.monsterready.remove(monster);
+    }
     
+    public void characterhasPlayed(Character character){
+        this.characterdone.add(character);
+        this.monsterready.remove(character);
+    }
+    
+    public void combatRun(){
+        while(this.testGrouplife()&&this.testMonsterlife()){
+            action(this.nextPlay());
+            this.removeDead();
+            if(this.endTurn()){
+                nextTurn();
+            }
+         
+        }
+        
+    }
+    
+    public boolean endTurn(){
+        if(monsterready.isEmpty()&&characterready.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     
     public void nextTurn(){
         this.turn+=1;
+        
+        for(Character character : characterready){
+           character.nextTurn();    
+        }
+        
+        monsterready=villains;
+        characterready=heroes;
+        monsterdone.clear();
+        characterdone.clear();
     }
     
     public void nextplayer(){
@@ -203,30 +289,45 @@ public class Combat {
     
     public boolean testMonsterlife(){
         
-        for(Monster monster : this.villains){
-            if(monster.isAlive()){
-                return false;
-            }
+      if(villains.isEmpty()){
+          return false;
+      }
+      return true;
+    }
+    
+    public boolean testGrouplife(){
+        if(heroes.isEmpty()){
+            return false;
         }
         return true;
     }
     
-    public boolean testGrouplife(){
-        
-        for(Character character : this.heroes){
-            if(character.isAlive()){
-                return false;
+    public void removeDead(){
+        for(Monster monster : this.villains){
+            if(!monster.isAlive()){
+                villains.remove(monster);
             }
         }
-        return true;
+        for(Character character : this.heroes){
+            if(!character.isAlive()){
+                heroes.remove(character);
+            }
+        }
     }
-     
+    
+    public Monster findanyMonster(){
+        Monster anymonster = null;
+        for(Monster monster : this.villains){
+            anymonster= monster;
+        }
+         return anymonster;
+    }
      
      public static Combat noCombat() {
          
-         Combat nocombat = new Combat(null,null,0);
+         Combat nocombat = new Combat(null,null);
          return nocombat;
-}
+        }
      
 }
 

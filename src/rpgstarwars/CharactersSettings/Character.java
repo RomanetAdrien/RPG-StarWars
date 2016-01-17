@@ -7,6 +7,7 @@ package rpgstarwars.CharactersSettings;
 
 import rpgstarwars.ItemsSettings.Inventory;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import rpgstarwars.ItemsSettings.Armor;
 import rpgstarwars.ItemsSettings.Weapon;
 
@@ -39,7 +40,33 @@ public class Character {
     
     
     public String play(){
-        return null;
+        int capacitiesnumber= this.capacities.size();
+        String playerinput =null;
+        int choice;
+        int i=0;
+        Capacity[] tabcapacities = new Capacity[capacitiesnumber+5];
+        String Text = "It's the turn of " + this.name +" \n\n";
+        Text+="What will the hero's decision be ?\n";
+        for(Capacity capacity : this.capacities){
+            
+                Text+=Integer.toString(i+1) + ": " + capacity.getName() +"\n";
+                tabcapacities[i]=capacity;
+                i++;
+            }
+        Text+=Integer.toString(i+1) + ": Grenade\n";
+                i++;        
+        do
+        {
+            playerinput = JOptionPane.showInputDialog(Text);
+            choice = Integer.parseInt(playerinput);
+        }while(choice<1 && choice>capacitiesnumber+1);
+                
+        if(choice == capacitiesnumber+1 ){
+            return "*&&"+this.getInventory().getGrenades().getData();
+        }
+        else{
+            return "+&&"+tabcapacities[choice-1].getData();
+        }
     }
     
     public void takeDamage(int damage){
@@ -65,6 +92,10 @@ public class Character {
    
     public boolean isAlive(){
         return this.health>0;
+    }
+    
+    public void nextTurn(){
+        this.status.nextTurn();
     }
 
     public String getName() {
