@@ -47,6 +47,7 @@ public class Combat {
     
     
     public String nextPlay(){
+
         Character nextcharacter = this.findNextcharacter();
         Monster nextmonster = this.findNextmonster();
         if(nextcharacter==null){
@@ -84,6 +85,7 @@ public class Combat {
         String[] data = playerchoice.split("&&");
         System.out.print(data);
         String result = "";
+        String playerinput="";
         String target = data[0];
         if (target=="monsterplay"){
             return this.monsterplay();
@@ -98,28 +100,46 @@ public class Combat {
             String[] monsternames = new String[villains.size()];
             
             for(Monster monster : villains){
-            Text+=Integer.toString(i+1) + ": " + monster.getName();
+            Text+=Integer.toString(i+1) + ": " + monster.getName()+"\n";
             monsternames[i]=monster.getName();
             i++;
             }
             
             do
         {
-            String playerinput = JOptionPane.showInputDialog(Text);
-            choice = Integer.parseInt(playerinput);
-        }while(choice<1 && choice>villains.size());
-            String playerinput=monsternames[choice-1];
+            playerinput = JOptionPane.showInputDialog(Text);
+            if(isInteger(playerinput)){
+            choice = Integer.parseInt(playerinput);                
+            }
+
+        }while((!isInteger(playerinput)) || (choice<1 && choice>villains.size()));
+            playerinput=monsternames[choice-1];
             return playerinput + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
         }
         
     }
     
+    public static boolean isInteger(String s) {
+    try { 
+        Integer.parseInt(s); 
+    } catch(NumberFormatException e) { 
+        return false; 
+    } catch(NullPointerException e) {
+        return false;
+    }
+    // only got here if we didn't return false
+    return true;
+}
+    
     public void action(String action){ //action comes under the forme "target&&effect&&amount&&area" or null if monster played
         if(action==null){return;}
+        int amount =0;
         String[] data = action.split("&&"); 
         String target = data[0];
         String effect = data[1];
-        int amount = Integer.parseInt(data[2]);
+        if(!target.equals("monsterplay")){
+                     amount = Integer.parseInt(data[2]);
+        }
         Boolean area = Boolean.valueOf(data[3]);
         if(!"heal".equals(effect)){
         for(Monster monster : villains){
@@ -366,14 +386,12 @@ public class Combat {
         Monster mprevious = null;
         Character cprevious =null;
         for(Monster monster : this.villains){
-            System.out.println("bib");
             if(mprevious!=null){
                 villains.remove(mprevious);
                 mprevious=null;
             }
             if(!monster.isAlive()){
                 mprevious=monster;
-                System.out.println("karate");
             }
         }
         for(Character character : this.heroes){

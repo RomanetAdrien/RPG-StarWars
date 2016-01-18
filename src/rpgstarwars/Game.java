@@ -11,6 +11,7 @@ import java.util.List;
 import rpgstarwars.CharactersSettings.Character;
 import java.util.Set;
 import javax.swing.JOptionPane;
+
 //import java.lang.Math.random;
 
 /**
@@ -35,7 +36,6 @@ public class Game {
         this.mainstory= new ArrayList<>();
         this.randomevents= new HashSet<>();
         companions.add(hero);
-        randomevents.addAll(Event.initRandomEvents(companions));
         this.specialevents= new HashSet<>();
         
         
@@ -43,13 +43,13 @@ public class Game {
     
     public static void run(){
         Game game = new Game();
-        
+
         
         
     }
     
     public void triggerRandomevent(){
-        Event event = this.randomevents.iterator().next();
+        Event event = Event.initRandomEvent(companions);
         startEvent(event);
         
     }
@@ -59,21 +59,25 @@ public class Game {
     }
     
     public void chooseDifficulty(){
-        String Text = "How tough shoul the galaxy be ?\n";
+        String Text = "How tough should the galaxy be ?\n";
+        String playerinput = "";
         Text+="1: Baby Monkeylizard\n";
         Text+="2: Stormtrooper\n";
         Text+="3: Ancient Rakata God of destruction";
         int choice=0;
         do
         {
-            String playerinput = JOptionPane.showInputDialog(Text);
-            choice = Integer.parseInt(playerinput);
-        }while(choice!=1 && choice!=2 && choice!=3);
+            playerinput = JOptionPane.showInputDialog(Text);
+            if(isInteger(playerinput)){
+            choice = Integer.parseInt(playerinput);                
+            }
+        }while((!isInteger(playerinput)) || (choice!=1 && choice!=2 && choice!=3));
           this.difficulty=choice;  
     }
     
     public void mainHero(){
         String Text ="Greetings hero, what is your name ?";
+        String playerinput = "";
         String charactername = JOptionPane.showInputDialog(Text);
         Text="I can tell you know some things about fighting, what kind of warrior are you exactly ?\n";
         String[] propositions = Character.availableclasses.split("&&");
@@ -83,9 +87,11 @@ public class Game {
         int choice=0;
         do
         {
-            String playerinput = JOptionPane.showInputDialog(Text);
-            choice = Integer.parseInt(playerinput);
-        }while(choice<1 || choice>propositions.length);
+            playerinput = JOptionPane.showInputDialog(Text);
+            if(isInteger(playerinput)){
+            choice = Integer.parseInt(playerinput);                
+            }
+        }while((!isInteger(playerinput)) || choice<1 || choice>propositions.length);
         String characterclass=propositions[choice-1];
         this.hero = new Character(charactername, characterclass);
     }
@@ -94,5 +100,17 @@ public class Game {
        int random = (int) (Math.random()*faces) + 1;
        return random;
     }
+    
+    public static boolean isInteger(String s) {
+    try { 
+        Integer.parseInt(s); 
+    } catch(NumberFormatException e) { 
+        return false; 
+    } catch(NullPointerException e) {
+        return false;
+    }
+    // only got here if we didn't return false
+    return true;
+}
     
 }

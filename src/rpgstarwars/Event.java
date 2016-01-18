@@ -54,11 +54,12 @@ public class Event {
     }
     
     
-    public static Set<Event> initRandomEvents(Set<rpgstarwars.CharactersSettings.Character> heroes){
-        Set<Event> randomevents= new HashSet<>();
+    public static Event initRandomEvent(Set<rpgstarwars.CharactersSettings.Character> heroes){
          Event newevent = new Event();
-         
-        //Event 1
+         int alea = Game.dice(1);
+         switch(alea){
+            
+            case 1 ://Event 1
         newevent.type=2;
         newevent.ennemies.add(Monster.securityDroid());
         newevent.ennemies.add(Monster.securityDroid());
@@ -67,10 +68,14 @@ public class Event {
         newevent.combat=new Combat(heroes,newevent.ennemies);
         newevent.place="Coruscant";
         newevent.characterintervention=1;
-        randomevents.add(newevent);
+                break;
+                
+         }
         
         
-      return randomevents;  
+        
+        
+      return newevent;  
     }
 /*
     public List<Event> initStory(){
