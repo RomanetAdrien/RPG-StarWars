@@ -5,9 +5,12 @@
  */
 package rpgstarwars;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import rpgstarwars.CharactersSettings.Character;
 import java.util.Set;
+import javax.swing.JOptionPane;
 //import java.lang.Math.random;
 
 /**
@@ -26,9 +29,66 @@ public class Game {
     
     public Game() {
       //  mainstory= initStory();
+        this.mainHero();
+        this.chooseDifficulty();
+        this.companions= new HashSet<>();
+        this.mainstory= new ArrayList<>();
+        this.randomevents= new HashSet<>();
+        companions.add(hero);
+        randomevents.addAll(Event.initRandomEvents(companions));
+        this.specialevents= new HashSet<>();
+        
+        
     }
     
+    public static void run(){
+        Game game = new Game();
+        
+        
+        
+    }
     
+    public void triggerRandomevent(){
+        Event event = this.randomevents.iterator().next();
+        startEvent(event);
+        
+    }
+    
+    public void startEvent(Event event){
+        event.getCombat().combatRun();
+    }
+    
+    public void chooseDifficulty(){
+        String Text = "How tough shoul the galaxy be ?\n";
+        Text+="1: Baby Monkeylizard\n";
+        Text+="2: Stormtrooper\n";
+        Text+="3: Ancient Rakata God of destruction";
+        int choice=0;
+        do
+        {
+            String playerinput = JOptionPane.showInputDialog(Text);
+            choice = Integer.parseInt(playerinput);
+        }while(choice!=1 && choice!=2 && choice!=3);
+          this.difficulty=choice;  
+    }
+    
+    public void mainHero(){
+        String Text ="Greetings hero, what is your name ?";
+        String charactername = JOptionPane.showInputDialog(Text);
+        Text="I can tell you know some things about fighting, what kind of warrior are you exactly ?\n";
+        String[] propositions = Character.availableclasses.split("&&");
+        for(int i=0;i<propositions.length;i++){
+            Text+=Integer.toString(i+1)+": "+propositions[i]+"\n";
+        }
+        int choice=0;
+        do
+        {
+            String playerinput = JOptionPane.showInputDialog(Text);
+            choice = Integer.parseInt(playerinput);
+        }while(choice<1 || choice>propositions.length);
+        String characterclass=propositions[choice-1];
+        this.hero = new Character(charactername, characterclass);
+    }
     
     public static int dice(int faces){ //roll a dice with the given a number of faces
        int random = (int) (Math.random()*faces) + 1;

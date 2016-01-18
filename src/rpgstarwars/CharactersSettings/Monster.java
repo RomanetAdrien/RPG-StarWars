@@ -28,9 +28,13 @@ public class Monster {
         Monster newmonster = new Monster("CleaningDroid",1,Stats.monsterStats("CleaningDroid"));
         return newmonster;
     }
+       public static Monster securityDroid(){
+        Monster newmonster = new Monster("SecurityDroid",1,Stats.monsterStats("SecurityDroid"));
+        return newmonster;
+    }
     
     public String play(){
-        return "monsterplay&&monsterplay&&monsterplay";
+        return "monsterplay&&monsterplay&&monsterplay&&monsterplay";
         
     }
     

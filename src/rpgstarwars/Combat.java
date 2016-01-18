@@ -42,6 +42,7 @@ public class Combat {
         this.monsterready=villains;
         this.characterdone= new HashSet<>();
         this.monsterdone= new HashSet<>();
+        this.protagonists=villains.size()+heroes.size();
     }
     
     
@@ -80,14 +81,14 @@ public class Combat {
     }
     
     public String chooseTarget(String playerchoice){
-        System.out.println("bibi");
         String[] data = playerchoice.split("&&");
+        System.out.print(data);
         String result = "";
         String target = data[0];
         if (target=="monsterplay"){
             return this.monsterplay();
         }
-        if(target=="*" || Boolean.parseBoolean(data[3])){
+        if("*".equals(target) || Boolean.parseBoolean(data[3])){
             result+=this.findanyMonster().getName();
             return result + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
         }
@@ -240,6 +241,7 @@ public class Combat {
     }
     
     public void combatRun(){
+        this.combatBegin();
         while(this.testGrouplife()&&this.testMonsterlife()){
             action(this.chooseTarget(nextPlay()));
             this.removeDead();
@@ -253,11 +255,20 @@ public class Combat {
         }
     }
     
+    public void combatBegin(){
+        String Text ="By the force ! You are attacked !\n";
+        Text+="Your ennemies are :\n";
+        for(Monster monster : villains){
+            Text+=monster.getName()+"\n";
+        }
+        JOptionPane.showMessageDialog(null, Text);
+    }
+    
     public void combatVictory(){
         
        /* FileInputStream blah = null;
          try {
-             blah = new FileInputStream("./victoryfanfare.mp3");
+             blah = new FileInputStream("victoryfanfare.mp3");
          } catch (FileNotFoundException ex) {
              Logger.getLogger(Combat.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -274,6 +285,18 @@ public class Combat {
         
         AudioPlayer.player.stop(as);
         */
+        
+        int moneygain = 0;
+        for(int i=0;i<this.protagonists;i++){
+            moneygain+=Game.dice(5)-1;
+        }
+        String Text ="VICTORY FOR THE HEROES !\n";
+        Text+="You win "+ Integer.toString(this.protagonists) +" XP  and "+Integer.toString(moneygain)+" credits";
+        for(Character character : heroes){
+            character.xpGain(this.protagonists);
+            character.gainCredits(moneygain);
+        }
+        JOptionPane.showMessageDialog(null, Text);
         
     }
     
@@ -335,17 +358,22 @@ public class Combat {
         }
         return true;
     }
+    public void removeDeadmonster(){
+        
+    }
     
     public void removeDead(){
         Monster mprevious = null;
         Character cprevious =null;
         for(Monster monster : this.villains){
+            System.out.println("bib");
             if(mprevious!=null){
                 villains.remove(mprevious);
                 mprevious=null;
             }
             if(!monster.isAlive()){
                 mprevious=monster;
+                System.out.println("karate");
             }
         }
         for(Character character : this.heroes){

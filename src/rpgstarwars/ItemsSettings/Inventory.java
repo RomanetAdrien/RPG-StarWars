@@ -19,6 +19,7 @@ public class Inventory {
 
     private int totalweight;
     private int healthpacks;
+    private int credits;
     private int bananas; //bananas give back force points to the user
     private Set<Weapon> weapons;
     private Set<Armor> armors;
@@ -35,6 +36,9 @@ public class Inventory {
         
     }
     
+    public void gainCredits(int credits){
+        this.credits+=credits;
+    }
     
     public int getTotalweight() {
         return totalweight;
@@ -54,6 +58,9 @@ public class Inventory {
     public Grenade getGrenades() {
         return grenades;
     }
+    public int getCredits() {
+        return credits;
+    }
     public void setTotalweight(int totalweight) {
         this.totalweight = totalweight;
     }
@@ -71,6 +78,9 @@ public class Inventory {
     }
     public void setGrenades(Grenade grenades) {
         this.grenades = grenades;
+    }
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
     
 }

@@ -148,11 +148,44 @@ public class Stats {
                 newstats.block=3;
                 break;
                 
+            case "SecurityDroid" :
+                newstats.maxhp=50;
+                newstats.maxforce=1;
+                newstats.speed=10;
+                newstats.room=0;
+                newstats.strength=20;
+                newstats.aim=20;
+                newstats.force=0;
+                newstats.dodge=20;
+                newstats.block=20;
+                break;
+                
                 
         }
       return newstats;  
     }
 
+    
+    public void levelUp(){
+        this.maxhp*=1.1;
+        this.maxforce*=1.1;
+        this.speed*=1.1;
+        this.room*=1.1;
+        this.strength*=1.1;
+        this.aim*=1.1;
+        this.force*=1.1;
+        this.dodge*=1.1;
+        this.block*=1.1;
+        Math.round(maxhp);
+        Math.round(maxforce);
+        Math.round(speed);
+        Math.round(room);
+        Math.round(strength);
+        Math.round(aim);
+        Math.round(force);
+        Math.round(dodge);
+        Math.round(block);
+    }
     
     public int getMaxhp() {
         return maxhp;

@@ -18,6 +18,8 @@ import rpgstarwars.ItemsSettings.Weapon;
 public class Character {
     
     private String name;
+    private int level;
+    private int xp;
     private int health;
     private Stats stats;
     private Set<Capacity> capacities;
@@ -25,9 +27,13 @@ public class Character {
     private Armor armor;
     private Weapon weapon;
     private Status status;
+    
+    public static String availableclasses ="BountyHunter&&JediKnight&&JediMaster&&SithLord&&Smuggler&&Soldier&&WookieWarrior";
 
     public Character(String name, String subclass) {
         this.name = name;
+        this.level= 1;
+        this.xp=1;
         this.inventory = new Inventory();
         this.status= new Status();
         this.stats= new Stats(subclass);
@@ -38,6 +44,23 @@ public class Character {
         
     }
     
+    public void gainCredits(int credits){
+        this.inventory.gainCredits(credits);
+    }
+    
+    public void xpGain(int xp){
+        this.xp+=xp;
+        if(this.xp>=10*this.level){
+            this.xp-=10*this.level;
+            this.levelUp();
+        }
+    }
+    
+    public void levelUp(){
+        this.stats.levelUp();
+        String Text ="A character has gained a level !";
+        JOptionPane.showMessageDialog(null, Text);
+    }
     
     public String play(){
         int capacitiesnumber= this.capacities.size();
@@ -145,6 +168,12 @@ public class Character {
     }
     public void setStatus(Status status) {
         this.status = status;
+    }
+    public int getLevel() {
+        return level;
+    }
+    public void setLevel(int level) {
+        this.level = level;
     }
     
 }

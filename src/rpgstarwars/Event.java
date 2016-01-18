@@ -5,6 +5,7 @@
  */
 package rpgstarwars;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import rpgstarwars.CharactersSettings.Monster;
@@ -39,6 +40,38 @@ public class Event {
         this.place = place;
     }
     
+    public Event() {
+        this.type = 0;
+        this.ennemies = new HashSet<>();
+        this.drop = null;
+        this.dialoguesnumber = 0;
+        this.characterintervention = 0;
+        this.dialogue = null;
+        this.combat = null;
+        this.combatnumber = 1;
+        this.instance = 0;
+        this.place = "";
+    }
+    
+    
+    public static Set<Event> initRandomEvents(Set<rpgstarwars.CharactersSettings.Character> heroes){
+        Set<Event> randomevents= new HashSet<>();
+         Event newevent = new Event();
+         
+        //Event 1
+        newevent.type=2;
+        newevent.ennemies.add(Monster.securityDroid());
+        newevent.ennemies.add(Monster.securityDroid());
+        newevent.ennemies.add(Monster.securityDroid());
+        newevent.ennemies.add(Monster.securityDroid());
+        newevent.combat=new Combat(heroes,newevent.ennemies);
+        newevent.place="Coruscant";
+        newevent.characterintervention=1;
+        randomevents.add(newevent);
+        
+        
+      return randomevents;  
+    }
 /*
     public List<Event> initStory(){
         Event event1,event2,event3,event4,event5;
@@ -46,6 +79,67 @@ public class Event {
             
     }
   */ 
+
+    public int getType() {
+        return type;
+    }
+    public void setType(int type) {
+        this.type = type;
+    }
+    public Set<Monster> getEnnemies() {
+        return ennemies;
+    }
+    public void setEnnemies(Set<Monster> ennemies) {
+        this.ennemies = ennemies;
+    }
+    public Set<Item> getDrop() {
+        return drop;
+    }
+    public void setDrop(Set<Item> drop) {
+        this.drop = drop;
+    }
+    public int getDialoguesnumber() {
+        return dialoguesnumber;
+    }
+    public void setDialoguesnumber(int dialoguesnumber) {
+        this.dialoguesnumber = dialoguesnumber;
+    }
+    public int getCharacterintervention() {
+        return characterintervention;
+    }
+    public void setCharacterintervention(int characterintervention) {
+        this.characterintervention = characterintervention;
+    }
+    public List<String> getDialogue() {
+        return dialogue;
+    }
+    public void setDialogue(List<String> dialogue) {
+        this.dialogue = dialogue;
+    }
+    public Combat getCombat() {
+        return combat;
+    }
+    public void setCombat(Combat combat) {
+        this.combat = combat;
+    }
+    public int getCombatnumber() {
+        return combatnumber;
+    }
+    public void setCombatnumber(int combatnumber) {
+        this.combatnumber = combatnumber;
+    }
+    public int getInstance() {
+        return instance;
+    }
+    public void setInstance(int instance) {
+        this.instance = instance;
+    }
+    public String getPlace() {
+        return place;
+    }
+    public void setPlace(String place) {
+        this.place = place;
+    }
     
     
     
