@@ -20,18 +20,9 @@ public class RPGStarWars {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-     /*  BountyHunter joueur =new BountyHunter("bibi");
-        Set gentil= new HashSet<>();
-        Set mechant= new HashSet<>();
-        mechant.add(Monster.cleaningDroid());
-        mechant.add(Monster.cleaningDroid());
-        gentil.add(joueur);
-        Combat fight = new Combat(gentil,mechant);
-       fight.combatRun();
-       */
+
         
-        Game jeu = new Game();
-        jeu.triggerRandomevent();
+        Game.run();
        
         
         

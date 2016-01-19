@@ -69,7 +69,7 @@ public class Character {
         int i=0;
         Capacity[] tabcapacities = new Capacity[capacitiesnumber+5];
         String Text = "It's the turn of " + this.name +" \n\n";
-        Text+="What will the hero's decision be ?\n";
+        Text+="Turn of : "+this.getName()+"\nWhat will the hero's decision be ?\n";
         for(Capacity capacity : this.capacities){
             
                 Text+=Integer.toString(i+1) + ": " + capacity.getName() +"\n";

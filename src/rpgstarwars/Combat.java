@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import sun.audio.AudioStream;
  */
 public class Combat {
      public Set<Character> heroes;
+     public Set<Monster> originalvillains;
      public Set<Monster> villains;
      public int turn;
      public int protagonists; //number of fighters
@@ -36,10 +38,20 @@ public class Combat {
 
     public Combat(Set<Character> heroes, Set<Monster> villains) {
         this.heroes = heroes;
-        this.villains = villains;
+        this.originalvillains= new HashSet<>();
+        this.characterready= new HashSet<>();
+        this.monsterready= new HashSet<>();
+        this.villains= new HashSet<>();
+        this.originalvillains = villains;
+        //this.villains = this.originalvillains;
+        for(Monster monster : originalvillains){
+            this.villains.add(monster);
+            this.monsterready.add(monster);
+        }
+        for(Character character : heroes){
+            this.characterready.add(character);
+        }
         this.turn = 0;
-        this.characterready=heroes;
-        this.monsterready=villains;
         this.characterdone= new HashSet<>();
         this.monsterdone= new HashSet<>();
         this.protagonists=villains.size()+heroes.size();
@@ -83,11 +95,10 @@ public class Combat {
     
     public String chooseTarget(String playerchoice){
         String[] data = playerchoice.split("&&");
-        System.out.print(data);
         String result = "";
         String playerinput="";
         String target = data[0];
-        if (target=="monsterplay"){
+        if (target.equals("monsterplay")){
             return this.monsterplay();
         }
         if("*".equals(target) || Boolean.parseBoolean(data[3])){
@@ -112,7 +123,7 @@ public class Combat {
             choice = Integer.parseInt(playerinput);                
             }
 
-        }while((!isInteger(playerinput)) || (choice<1 && choice>villains.size()));
+        }while((!isInteger(playerinput)) || choice<1 || choice>villains.size());
             playerinput=monsternames[choice-1];
             return playerinput + "&&" + data[1] + "&&" + data[2] + "&&" +data[3];
         }
@@ -137,10 +148,11 @@ public class Combat {
         String[] data = action.split("&&"); 
         String target = data[0];
         String effect = data[1];
-        if(!target.equals("monsterplay")){
-                     amount = Integer.parseInt(data[2]);
-        }
+        amount = Integer.parseInt(data[2]);
         Boolean area = Boolean.valueOf(data[3]);
+        if(target.equals("monsterplay")){
+            monsterAttack(amount);
+        }
         if(!"heal".equals(effect)){
         for(Monster monster : villains){
             
@@ -168,7 +180,7 @@ public class Combat {
     
     public String monsterplay(){
         for(Character character : heroes){
-            character.takeDamage(5);
+            character.takeDamage(Game.dice(this.protagonists)+5);
         }
         return null;
     }
@@ -207,6 +219,17 @@ public class Combat {
         
     }
     
+    public void monsterAttack(int damage){
+        int rand = Game.dice(heroes.size());
+        int i=0;
+        for(Character character : heroes){
+            if(i==rand){
+                character.takeDamage(damage);
+            }
+            i++;
+        }
+        
+    }
     
     public Character findNextcharacter(){
     Character nextplayer = null;
@@ -257,7 +280,7 @@ public class Combat {
     
     public void characterhasPlayed(Character character){
         this.characterdone.add(character);
-        this.monsterready.remove(character);
+        this.characterready.remove(character);
     }
     
     public void combatRun(){
@@ -273,6 +296,9 @@ public class Combat {
         if(this.testGrouplife()){
             combatVictory();
         }
+        else{
+            combatDefeat();
+        }
     }
     
     public void combatBegin(){
@@ -285,7 +311,7 @@ public class Combat {
     }
     
     public void combatVictory(){
-        
+        //the following commentary block is a reminder of a miserable failure to add sound in case of victory
        /* FileInputStream blah = null;
          try {
              blah = new FileInputStream("victoryfanfare.mp3");
@@ -320,6 +346,13 @@ public class Combat {
         
     }
     
+    public void combatDefeat(){
+        String Text ="You are a disgrace, I shut this programm down \n before you have the time to embarass yourself further.";
+        JOptionPane.showMessageDialog(null, Text);
+        System.exit(0);
+        System.out.println("If you are able to read this I have failed to shut the programm  down");
+    }
+    
     public boolean endTurn(){
         if(monsterready.isEmpty()&&characterready.isEmpty()){
             return true;
@@ -336,8 +369,13 @@ public class Combat {
            character.nextTurn();    
         }
         
-        monsterready=villains;
-        characterready=heroes;
+        for(Monster monster : originalvillains){
+            this.villains.add(monster);
+            this.monsterready.add(monster);
+        }
+        for(Character character : heroes){
+            this.characterready.add(character);
+        }
         monsterdone.clear();
         characterdone.clear();
     }
@@ -385,15 +423,14 @@ public class Combat {
     public void removeDead(){
         Monster mprevious = null;
         Character cprevious =null;
-        for(Monster monster : this.villains){
-            if(mprevious!=null){
-                villains.remove(mprevious);
-                mprevious=null;
-            }
-            if(!monster.isAlive()){
-                mprevious=monster;
-            }
-        }
+         for (Monster monster : originalvillains) {
+             if(mprevious!=null){
+                 villains.remove(mprevious);
+                 mprevious=null;
+             }if(!monster.isAlive()){
+                 mprevious=monster;
+             }
+         }
         for(Character character : this.heroes){
             if(cprevious!=null){
                 heroes.remove(cprevious);

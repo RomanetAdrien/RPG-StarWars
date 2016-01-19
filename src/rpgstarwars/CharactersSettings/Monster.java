@@ -32,11 +32,14 @@ public class Monster {
         Monster newmonster = new Monster("SecurityDroid",5,Stats.monsterStats("SecurityDroid"));
         return newmonster;
     }
+       public static Monster darkLordCthulu(){
+        Monster newmonster = new Monster("DarkLordCthulu",10,Stats.monsterStats("DarkLordCthulu"));
+        return newmonster;
+    }
     
     public String play(){
         String damage = Integer.toString(this.maindamage); 
         return "monsterplay&&monsterplay&&"+damage+"&&monsterplay";
-        
     }
     
     public void takeDamage(int damage){

@@ -12,7 +12,6 @@ import rpgstarwars.CharactersSettings.Character;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
-//import java.lang.Math.random;
 
 /**
  *
@@ -20,12 +19,12 @@ import javax.swing.JOptionPane;
  */
 public class Game {
     
-    private Set<Event> randomevents;
-    private Set<Event> specialevents;
-    private List<Event> mainstory;
-    private int difficulty;
-    private Character hero;
-    private Set<Character> companions;
+    public Set<Event> randomevents;
+    public Set<Event> specialevents;
+    public List<Event> mainstory;
+    public int difficulty;
+    public Character hero;
+    public Set<Character> companions;
 
     
     public Game() {
@@ -37,14 +36,55 @@ public class Game {
         this.randomevents= new HashSet<>();
         companions.add(hero);
         this.specialevents= new HashSet<>();
+        this.mainstory= Event.initStory(companions);
         
+    }
+    
+    public void storyUpdate(){
+        this.mainstory= Event.initStory(companions);
+    }
+    
+    public static void introTheme(){
+        String intro = "A long time ago in a galaxy far far away...";
+        String Text = "STAR WARS\n";
+        Text+="daaaaaadadadadadadadadada\n";
+        Text+="dadadaaaadaaadadadadadad...\n\n";
+        
+        JOptionPane.showMessageDialog(null, intro);
+        JOptionPane.showMessageDialog(null, Text);
         
     }
     
     public static void run(){
+        Game.introTheme();
+        int storycount=0;
+        int eventclock=0;
         Game game = new Game();
-
+        while(storycount<game.mainstory.size()){
+            game.storyUpdate();
+            if(eventclock==0){
+                game.newCompanion();
+            }
+            if(eventclock==1){
+                game.triggerRandomevent();  
+            }
+            if(eventclock==5){
+                eventclock=0;  
+            }
         
+           game.triggerStory(storycount);
+           storycount++;
+           eventclock++;
+        }
+        String credits = "Thanks for playing !\nStory by Adrien ROMANET\nGraphics by Adrien ROMANET\nGame Design by Adrien ROMANET\nTeam director : Adrien ROMANET\nSpecial Thanks to Adrien ROMANET";
+        JOptionPane.showMessageDialog(null, credits);
+        System.exit(0);
+
+    }
+    
+    public void triggerSpecialevent(){
+        Event event = specialevents.iterator().next();
+        startEvent(event);
         
     }
     
@@ -54,8 +94,40 @@ public class Game {
         
     }
     
+    public void triggerStory(int i){
+        Event event = mainstory.get(i);
+        startEvent(event);
+        
+    }
+    
+    public void newCompanion(){
+        String Text="Hello warrior I have heard about you and wish to join you in your quest\nMy name is :";
+        String newname = JOptionPane.showInputDialog(Text); 
+        String[] propositions = Character.availableclasses.split("&&");
+        String newclass = propositions[Game.dice(propositions.length)-1];
+        
+        Character newcompanion = new Character(newname,newclass);
+        Text="I am a level "+this.hero.getLevel()+" "+newclass+" and I am honored to be your companion.\n To infiny and beyond !";
+        JOptionPane.showMessageDialog(null, Text);
+        this.companions.add(newcompanion);
+    }
+    
     public void startEvent(Event event){
-        event.getCombat().combatRun();
+        if(event.getDialoguesnumber()==0){
+            event.getCombat().combatRun();
+        }
+        else{
+            String Text="";
+            String playeranswer="";
+            for(String dialogue :event.getDialogue()){
+                Text+=dialogue+"\n";
+                playeranswer = JOptionPane.showInputDialog(Text); 
+            }
+            if(event.getCombatnumber()!=0){
+            event.getCombat().combatRun();                
+            }
+
+        }
     }
     
     public void chooseDifficulty(){

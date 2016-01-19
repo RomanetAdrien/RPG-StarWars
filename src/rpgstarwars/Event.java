@@ -5,6 +5,7 @@
  */
 package rpgstarwars;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,14 +18,14 @@ import rpgstarwars.ItemsSettings.Item;
  */
 public class Event {
     private int type;//0:main story 1:LegendaryBattle 2:random battle 3:Legendary drop  4:random drop 5:Decision
-    private Set<Monster> ennemies;
+    public Set<Monster> ennemies;
     private Set<Item> drop;
     private int dialoguesnumber;
     private int characterintervention;
     private List<String> dialogue;
-    private Combat combat;
+    public Combat combat;
     private int combatnumber;
-    private int instance;//counter that tells us wich dialogue/combat/decision we do now
+    public int instance;//counter that tells us wich dialogue/combat/decision we do now
     private String place;
 
     public Event(int type, Set<Monster> ennemies, Set<Item> drop, int dialoguesnumber, int characterintervention, List<String> dialogue, Combat combat, int combatnumber, int instance, String place) {
@@ -46,7 +47,7 @@ public class Event {
         this.drop = null;
         this.dialoguesnumber = 0;
         this.characterintervention = 0;
-        this.dialogue = null;
+        this.dialogue = new ArrayList<>();
         this.combat = null;
         this.combatnumber = 1;
         this.instance = 0;
@@ -77,13 +78,56 @@ public class Event {
         
       return newevent;  
     }
-/*
-    public List<Event> initStory(){
+    
+
+    public static List<Event> initStory(Set<rpgstarwars.CharactersSettings.Character> heroes){
         Event event1,event2,event3,event4,event5;
+        List<Event> story = new ArrayList<>();
         int storytype=0;
-            
+        
+        //Event1
+        event1=new Event();
+        event1.dialoguesnumber=1;
+        event1.type=storytype;
+        event1.combatnumber=0;
+        event1.dialogue.add("Oh no ! A really bad guy, so bad even the sith want him stoppes, is trying to take over the galaxy !\n I have to do something ! It is said he hides on Malachor5, That is where i'm going !");
+        event1.place="Coruscant";
+        
+        //Event2
+        event2=new Event();
+        event2.type=storytype;
+        event2.combatnumber=0;
+        event2.dialoguesnumber=1;
+        event2.dialogue.add("Pfiou, this fight is over, let's go to Malachor5\n *Travel to Malachor5");
+        event2.place="Coruscant";
+        
+        //Event3
+        event3=new Event();
+        event3.type=storytype;
+        event3.combatnumber=1;
+        event3.dialoguesnumber=1;
+        event3.dialogue.add("There he is ! Brace yourselves companions ! May the force be with us !");
+        event3.place="Malachor5";
+        event3.ennemies.add(Monster.darkLordCthulu());
+        event3.combat = new Combat(heroes,event3.ennemies);
+        
+        
+        //Event4
+        event4=new Event();
+        event4.type=storytype;
+        event4.combatnumber=0;
+        event4.dialoguesnumber=1;
+        event4.dialogue.add("We did it, we did it we dit yeah ! Yes we did it...");
+        event4.place="Malachor5";
+        
+        story.add(event1);
+        story.add(event2);
+        story.add(event3);
+        story.add(event4);
+        return story;
+        
     }
-  */ 
+  
 
     public int getType() {
         return type;

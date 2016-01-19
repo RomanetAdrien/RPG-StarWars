@@ -126,7 +126,7 @@ public class Stats {
                 break;
                 
         }
-        
+        maxhp*=2;
         
     }
 
@@ -158,6 +158,18 @@ public class Stats {
                 newstats.force=0;
                 newstats.dodge=20;
                 newstats.block=20;
+                break;
+                
+            case "DarkLordCthulu" :
+                newstats.maxhp=100;
+                newstats.maxforce=100;
+                newstats.speed=100;
+                newstats.room=100;
+                newstats.strength=200;
+                newstats.aim=200;
+                newstats.force=100;
+                newstats.dodge=200;
+                newstats.block=200;
                 break;
                 
                 
